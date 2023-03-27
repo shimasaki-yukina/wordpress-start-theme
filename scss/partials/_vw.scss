@@ -1,0 +1,18 @@
+@function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+      @return $number / ($number * 0 + 1);
+    }
+    @return $number;
+}
+
+//pxをvwに変換
+@function _vw($px, $width: 1366) {
+    @return (strip-unit($px) / strip-unit($width)) * 100vw;
+}
+
+//vwと最大pxを返す
+@function _min($px, $width: 1366) 
+{
+    $vw: _vw($px, $width);
+    @return unquote("min(") + $vw + unquote(",") + $px + unquote(")");
+}

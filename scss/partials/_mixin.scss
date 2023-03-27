@@ -1,0 +1,8 @@
+// media queries
+@mixin MQ-MAX($canvas) {
+    @media only screen and (max-width: $canvas) { @content; }
+}
+
+@mixin MQ-MIN($canvas) {
+    @media screen and (min-width: $canvas) { @content; }
+}
